@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{%static 'css/style.css' %}">
+    <title>Listado</title>
+</head>
+<body>
+    <div>LISTADO DE CLIENTES</div>
+    {% if clientes %}
+    <table>
+        <thead>
+            <tr>
+                <th>Rut</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Numero de Compras</th>
+                <th colspan="2">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.rut }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.correo }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.numeroCompras }}</td>
+                <td><a href="/actualizarCliente/{{ cliente.id }}"><i class="fas fa-pencil-alt"></i></a></td>
+                <td><a href="/eliminarCliente/{{ cliente.id }}"><i class="fas fa-trash-alt"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div>
+        <strong>No se encuentran clientes en el sistema</strong>
+    </div>
+    {% endif %}
+    <a href="../">VOLVER</a>
+    <a href="../agregarClientes">AGREGAR CLIENTES</a>
+</body>
+</html>
